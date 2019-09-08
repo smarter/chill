@@ -41,7 +41,7 @@ class SortedMapSerializer[A, B] extends KSerializer[SortedMap[A, B]] {
 
     // Go ahead and be faster, and not as functional cool, and be mutable in here
     var idx = 0
-    val builder = SortedMap.canBuildFrom[A, B](ordering)()
+    val builder = SortedMap.newBuilder[A, B](ordering)
     builder.sizeHint(size)
 
     while (idx < size) {

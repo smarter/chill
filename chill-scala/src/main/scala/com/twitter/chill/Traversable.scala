@@ -17,8 +17,9 @@ limitations under the License.
 package com.twitter.chill
 
 import scala.collection.generic.CanBuildFrom
+import scala.collection.Factory
 
-class TraversableSerializer[T, C <: Traversable[T]](override val isImmutable: Boolean = true)(implicit cbf: CanBuildFrom[C, T, C])
+class TraversableSerializer[T, C <: Traversable[T]](override val isImmutable: Boolean = true)(implicit factory: Factory[T, C])
   extends KSerializer[C] {
 
   def write(kser: Kryo, out: Output, obj: C) {
@@ -36,7 +37,7 @@ class TraversableSerializer[T, C <: Traversable[T]](override val isImmutable: Bo
     val size = in.readInt(true)
     // Go ahead and be faster, and not as functional cool, and be mutable in here
     var idx = 0
-    val builder = cbf()
+    val builder = factory.newBuilder
     builder.sizeHint(size)
 
     while (idx < size) {

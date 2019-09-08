@@ -23,8 +23,8 @@ val sharedSettings = mimaDefaultSettings ++ scalariformSettings ++ Seq(
     Opts.resolver.sonatypeReleases
   ),
   libraryDependencies ++= Seq(
-    "org.scalacheck" %% "scalacheck" % "1.11.6" % "test",
-    "org.scalatest" %% "scalatest" % "3.0.0" % "test",
+    "org.scalacheck" %% "scalacheck" % "1.14.0" % "test",
+    "org.scalatest" %% "scalatest" % "3.0.8" % "test",
     "com.esotericsoftware" % "kryo-shaded" % kryoVersion
   ),
 
@@ -166,7 +166,8 @@ lazy val chill = Project(
   settings = sharedSettings
 ).settings(
   name := "chill",
-  mimaPreviousArtifacts := Set("com.twitter" %% "chill" % binaryCompatVersion)
+  mimaPreviousArtifacts := Set("com.twitter" %% "chill" % binaryCompatVersion),
+  crossScalaVersions += "2.13.0"
 ).dependsOn(chillJava)
 
 def akka(scalaVersion: String) =

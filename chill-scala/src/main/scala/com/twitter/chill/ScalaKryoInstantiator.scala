@@ -166,7 +166,7 @@ class AllScalaRegistrar_0_9_2 extends IKryoRegistrar {
     new JavaWrapperCollectionRegistrar()(k)
 
     // Register all 22 tuple serializers and specialized serializers
-    ScalaTupleSerialization.register(k)
+    ScalaTupleSerialization.register()(k)
     k.forClass[Symbol](new KSerializer[Symbol] {
       override def isImmutable = true
       def write(k: Kryo, out: Output, obj: Symbol) { out.writeString(obj.name) }
@@ -178,7 +178,7 @@ class AllScalaRegistrar_0_9_2 extends IKryoRegistrar {
       .forSubclass[scala.Enumeration#Value](new EnumerationSerializer)
 
     // use the singleton serializer for boxed Unit
-    val boxedUnit = scala.Unit.box(())
+    val boxedUnit: Any = ()
     k.register(boxedUnit.getClass, new SingletonSerializer(boxedUnit))
     PackageRegistrar.all()(k)
     new Java8ClosureRegistrar()(k)
@@ -252,8 +252,6 @@ class AllScalaRegistrar extends IKryoRegistrar {
     k.forClass[scala.runtime.VolatileByteRef](new VolatileByteRefSerializer)
     k.forClass[BigDecimal](new BigDecimalSerializer)
     k.register(Queue.empty[Any].getClass)
-    k.forConcreteTraversableClass(Map(1 -> 2).filterKeys(_ != 2))
-      .forConcreteTraversableClass(Map(1 -> 2).mapValues(_ + 1))
-      .forConcreteTraversableClass(Map(1 -> 2).keySet)
+    k.forConcreteTraversableClass(Map(1 -> 2).keySet)
   }
 }

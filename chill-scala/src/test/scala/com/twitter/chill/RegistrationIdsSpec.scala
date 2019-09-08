@@ -62,11 +62,11 @@ class RegistrationIdsSpec extends WordSpec with Matchers {
       |7 -> long
       |8 -> double
       |9 -> void
-      |10 -> class scala.collection.convert.Wrappers$SeqWrapper
-      |11 -> class scala.collection.convert.Wrappers$IteratorWrapper
-      |12 -> class scala.collection.convert.Wrappers$MapWrapper
-      |13 -> class scala.collection.convert.Wrappers$JListWrapper
-      |14 -> class scala.collection.convert.Wrappers$JMapWrapper
+      |10 -> class scala.collection.convert.JavaCollectionWrappers$SeqWrapper
+      |11 -> class scala.collection.convert.JavaCollectionWrappers$IteratorWrapper
+      |12 -> class scala.collection.convert.JavaCollectionWrappers$MapWrapper
+      |13 -> class scala.collection.convert.JavaCollectionWrappers$JListWrapper
+      |14 -> class scala.collection.convert.JavaCollectionWrappers$JMapWrapper
       |15 -> class scala.Some
       |16 -> class scala.util.Left
       |17 -> class scala.util.Right
@@ -75,19 +75,19 @@ class RegistrationIdsSpec extends WordSpec with Matchers {
       |20 -> class scala.collection.immutable.Set$Set2
       |21 -> class scala.collection.immutable.Set$Set3
       |22 -> class scala.collection.immutable.Set$Set4
-      |23 -> class scala.collection.immutable.HashSet$HashTrieSet
+      |23 -> class scala.collection.immutable.HashSet
       |24 -> class scala.collection.immutable.Map$Map1
       |25 -> class scala.collection.immutable.Map$Map2
       |26 -> class scala.collection.immutable.Map$Map3
       |27 -> class scala.collection.immutable.Map$Map4
-      |28 -> class scala.collection.immutable.HashMap$HashTrieMap
+      |28 -> class scala.collection.immutable.HashMap
       |29 -> class scala.collection.immutable.Range$Inclusive
       |30 -> class scala.collection.immutable.NumericRange$Inclusive
       |31 -> class scala.collection.immutable.NumericRange$Exclusive
       |32 -> class scala.collection.mutable.BitSet
       |33 -> class scala.collection.mutable.HashMap
       |34 -> class scala.collection.mutable.HashSet
-      |35 -> class scala.collection.convert.Wrappers$IterableWrapper
+      |35 -> class scala.collection.convert.JavaCollectionWrappers$IterableWrapper
       |36 -> class scala.Tuple1
       |37 -> class scala.Tuple2
       |38 -> class scala.Tuple3
@@ -160,15 +160,15 @@ class RegistrationIdsSpec extends WordSpec with Matchers {
       |102 -> class [Ljava.lang.Object;
       |103 -> class java.lang.Class
       |104 -> class java.lang.Object
-      |105 -> class scala.collection.mutable.WrappedArray$ofByte
-      |106 -> class scala.collection.mutable.WrappedArray$ofShort
-      |107 -> class scala.collection.mutable.WrappedArray$ofInt
-      |108 -> class scala.collection.mutable.WrappedArray$ofLong
-      |109 -> class scala.collection.mutable.WrappedArray$ofFloat
-      |110 -> class scala.collection.mutable.WrappedArray$ofDouble
-      |111 -> class scala.collection.mutable.WrappedArray$ofBoolean
-      |112 -> class scala.collection.mutable.WrappedArray$ofChar
-      |113 -> class scala.collection.mutable.WrappedArray$ofRef
+      |105 -> class scala.collection.mutable.ArraySeq$ofByte
+      |106 -> class scala.collection.mutable.ArraySeq$ofShort
+      |107 -> class scala.collection.mutable.ArraySeq$ofInt
+      |108 -> class scala.collection.mutable.ArraySeq$ofLong
+      |109 -> class scala.collection.mutable.ArraySeq$ofFloat
+      |110 -> class scala.collection.mutable.ArraySeq$ofDouble
+      |111 -> class scala.collection.mutable.ArraySeq$ofBoolean
+      |112 -> class scala.collection.mutable.ArraySeq$ofChar
+      |113 -> class scala.collection.mutable.ArraySeq$ofRef
       |114 -> class scala.None$
       |115 -> class scala.collection.immutable.Queue
       |116 -> class scala.collection.immutable.Nil$
@@ -189,21 +189,15 @@ class RegistrationIdsSpec extends WordSpec with Matchers {
       |131 -> class scala.collection.immutable.Set$EmptySet$
       |132 -> class scala.collection.immutable.ListSet$EmptyListSet$
       |133 -> class scala.collection.immutable.ListSet$Node
-      |134 -> class scala.collection.immutable.HashSet$EmptyHashSet$
-      |135 -> class scala.collection.immutable.HashSet$HashSet1
-      |136 -> class scala.collection.immutable.Map$EmptyMap$
-      |137 -> class scala.collection.immutable.HashMap$EmptyHashMap$
-      |138 -> class scala.collection.immutable.HashMap$HashMap1
-      |139 -> class scala.collection.immutable.ListMap$EmptyListMap$
-      |140 -> class scala.collection.immutable.ListMap$Node
-      |141 -> class scala.collection.immutable.Stream$Cons
-      |142 -> class scala.collection.immutable.Stream$Empty$
-      |143 -> class scala.runtime.VolatileByteRef
-      |144 -> class scala.math.BigDecimal
-      |145 -> class scala.collection.immutable.Queue$EmptyQueue$
-      |146 -> class scala.collection.immutable.MapLike$$anon$1
-      |147 -> class scala.collection.immutable.MapLike$$anon$2
-      |148 -> class scala.collection.immutable.MapLike$ImmutableDefaultKeySet"""
+      |134 -> class scala.collection.immutable.Map$EmptyMap$
+      |135 -> class scala.collection.immutable.ListMap$EmptyListMap$
+      |136 -> class scala.collection.immutable.ListMap$Node
+      |137 -> class scala.collection.immutable.Stream$Cons
+      |138 -> class scala.collection.immutable.Stream$Empty$
+      |139 -> class scala.runtime.VolatileByteRef
+      |140 -> class scala.math.BigDecimal
+      |141 -> class scala.collection.immutable.Queue$EmptyQueue$
+      |142 -> class scala.collection.immutable.MapOps$ImmutableKeySet"""
       .stripMargin.lines.mkString("\n")
 
   private def expectedEntries_current =

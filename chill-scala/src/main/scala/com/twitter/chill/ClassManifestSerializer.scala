@@ -16,6 +16,8 @@ limitations under the License.
 
 package com.twitter.chill
 
+import scala.reflect.ClassManifest
+
 class ClassManifestSerializer[T] extends KSerializer[ClassManifest[T]] {
 
   def write(kser: Kryo, out: Output, obj: ClassManifest[T]) {

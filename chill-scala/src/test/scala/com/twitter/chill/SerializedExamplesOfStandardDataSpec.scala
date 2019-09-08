@@ -1,6 +1,6 @@
 package com.twitter.chill
 
-import scala.collection.{ JavaConversions, JavaConverters }
+import scala.collection.JavaConverters
 import scala.collection.immutable.{ HashMap, HashSet, ListMap, ListSet, NumericRange, Queue }
 import scala.runtime.VolatileByteRef
 
@@ -118,7 +118,7 @@ class SerializedExamplesOfStandardDataSpec extends WordSpec with Matchers {
     33 -> ("IwEBJwECBgIK" -> scala.collection.mutable.HashMap(3 -> 5)),
     34 -> ("JAEBAgY=" -> scala.collection.mutable.HashSet(3)),
     35 -> ("JQF3AQECBA==" ->
-      JavaConversions.asJavaCollection(Seq(2))), // Wrappers$IterableWrapper
+      JavaConverters.asJavaCollectionConverter(Iterable(2)).asJavaCollection), // JavaCollectionWrappers$IterableWrapper
     36 -> ("JgEDAYJh" -> Tuple1("a")),
     37 -> ("JwEDAYJhAwGCYg==" -> ("a", "b")),
     38 -> ("KAECAgIEAgY=" -> (1, 2, 3)),

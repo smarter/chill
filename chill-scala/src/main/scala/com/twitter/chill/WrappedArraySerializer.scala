@@ -16,7 +16,7 @@ limitations under the License.
 
 package com.twitter.chill
 
-import scala.collection.mutable.{ WrappedArray, WrappedArrayBuilder }
+import scala.collection.mutable.WrappedArray
 
 import scala.reflect._
 
@@ -29,14 +29,11 @@ class WrappedArraySerializer[T] extends KSerializer[WrappedArray[T]] {
     kser.writeClassAndObject(out, obj.array)
   }
 
-  def read(kser: Kryo, in: Input, cls: Class[WrappedArray[T]]) = {
+  def read(kser: Kryo, in: Input, cls: Class[WrappedArray[T]]): WrappedArray[T] = {
     // Write the class-manifest, we don't use writeClass because it
     // uses the registration system, and this class might not be registered
     val clazz = kser.readObject(in, classOf[Class[T]])
     val array = kser.readClassAndObject(in).asInstanceOf[Array[T]]
-    val bldr = new WrappedArrayBuilder[T](ClassTag[T](clazz))
-    bldr.sizeHint(array.size)
-    bldr ++= array
-    bldr.result()
+    WrappedArray.make[T](array)
   }
 }
